@@ -1,0 +1,489 @@
+/* ======================================= */
+/* 0. VARIABLES Y RESET GENERAL */
+/* ======================================= */
+
+:root {
+    /* Colores Base */
+    --color-primary: #3498db;
+    /* Azul brillante para botones y acentos (Marvel: Rojo, Rick & Morty: Verde, Pokémon: Amarillo) */
+    --color-secondary: #2c3e50;
+    /* Color oscuro para texto principal y fondos */
+    --color-background-light: #ecf0f1;
+    /* Fondo claro de la página */
+    --color-background-card: #ffffff;
+    /* Fondo de las tarjetas de item */
+    --color-text-dark: #2c3e50;
+    --color-text-light: #ffffff;
+    --color-border: #bdc3c7;
+    /* Color de borde sutil */
+
+    /* Tipografía */
+    --font-primary: 'Open Sans', sans-serif;
+    --font-size-base: 16px;
+
+    /* Espaciado */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+
+    /* Sombras */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+    padding-bottom: var(--spacing-lg);
+    /* Espacio para el footer */
+}
+
+/* ======================================= */
+/* 1. ESTRUCTURA PRINCIPAL (GRID) */
+/* ======================================= */
+
+.page {
+    display: grid;
+    /* Define la estructura principal para desktop: Sidebar (250px) y Main content (restante) */
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    /* Header, Main, Footer */
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    /* Sombra suave al contenedor principal */
+}
+
+/* Media Query para móvil y tablet */
+@media (max-width: 900px) {
+    .page {
+        /* En móvil, la sidebar y el main se apilan */
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+    }
+}
+
+/* ======================================= */
+/* 2. HEADER Y FOOTER */
+/* ======================================= */
+
+.header {
+    grid-area: header;
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.header__logo img {
+    height: 40px;
+    /* Ajuste del logo */
+    width: auto;
+}
+
+.header__subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.header__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* Estilo para la búsqueda */
+.header__search input {
+    padding: var(--spacing-xs);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    width: 200px;
+}
+
+.footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30px 1fr 30px;
+    background-color: var(--color-secondary);
+    color: var(--color-border);
+    padding: var(--spacing-sm);
+    font-size: 0.8rem;
+    row-gap: 10px;
+    /* FOOTER Sheila AÑADIDO */
+}
+.footer__logo {
+    grid-column: 1/2;
+    grid-row: 1/3;
+    padding-left: 60px;
+
+}
+.iconos__redes {
+    display: flex;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    padding-left: 30px;
+}
+.footer__text {
+    grid-column: 1/2;
+    grid-row: 3/3;
+}
+.politicas__web {
+    grid-column: 2/2;
+    grid-row: 3/3;
+    display: flex;      /* convierte en contenedor flex */
+    gap: 15px;          /* separa los enlaces horizontalmente */
+    justify-content: end; /* los alinea a la derecha del footer */
+    padding-right: 30px;
+    gap: 15px;
+
+}
+.footer__support__titulo {
+    grid-column: 2/2;
+    grid-row: 1/3;
+    display: flex;
+    place-self: end;
+    align-self: flex-start;
+    padding-right: 40px;
+}
+.footer__support__enlaces {
+    grid-column: 2/2;
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    padding-right: 30px;
+    
+}
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+/* ======================================= */
+/* 3. ASIDE (BARRA LATERAL / FILTROS) */
+/* ======================================= */
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--color-background-card);
+    /* Fondo blanco o claro para resaltar filtros */
+    padding: var(--spacing-md);
+    border-right: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar__title {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--spacing-xs);
+}
+
+.form__group {
+    margin-bottom: var(--spacing-sm);
+}
+
+.form__group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.form__group select,
+.form__group input,
+.form__group button {
+    width: 100%;
+    padding: var(--spacing-xs);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form__group.actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-md);
+}
+
+/* ======================================= */
+/* 4. MAIN (CONTENIDO PRINCIPAL) */
+/* ======================================= */
+
+#main {
+    grid-area: main;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    /* Para que el contenido principal pueda hacer scroll */
+}
+
+/* 4.1. Banner de Detalle/Info */
+.detail-banner {
+    background-color: var(--color-background-card);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-md);
+    border-left: 5px solid var(--color-primary);
+    /* Toque de color */
+    position: relative;
+}
+
+.detail-banner__title {
+    color: var(--color-secondary);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.detail-banner__description {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.detail-banner__tag {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* 4.2. Listado de Items */
+
+.list__heading {
+    font-size: 1.8rem;
+    color: var(--color-secondary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.list__items {
+    list-style: none;
+    display: grid;
+    /* Grid responsivo: de 1 a 4 columnas, ajustando el tamaño mínimo */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+}
+
+/* ======================================= */
+/* 5. TARJETA DE ITEM (ITEM-CARD) */
+/* ======================================= */
+
+.item-card {
+    background-color: var(--color-background-card);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.item-card__header {
+    position: relative;
+    height: 180px;
+    /* Altura fija para la imagen */
+    overflow: hidden;
+}
+
+.item-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Asegura que la imagen cubra el área sin deformarse */
+    display: block;
+}
+
+.item-card__fav-toggle {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--color-primary);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.item-card__fav-toggle:hover {
+    background: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.item-card__name {
+    font-size: 1.2rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--color-secondary);
+    text-align: center;
+    margin-top: var(--spacing-xs);
+}
+
+.item-card__info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Dos columnas para los datos */
+    padding: 0 var(--spacing-sm);
+    gap: var(--spacing-xs);
+    font-size: 0.85rem;
+}
+
+.item-card__data {
+    border-top: 1px dashed var(--color-border);
+    padding-top: var(--spacing-xs);
+}
+
+.item-card__view-details {
+    width: 100%;
+    padding: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.item-card__view-details:hover {
+    background-color: #2980b9;
+    /* Tono más oscuro de primary */
+}
+
+/* ======================================= */
+/* 6. MODAL Y BOTONES */
+/* ======================================= */
+
+/* Botones genéricos (usados también en el sidebar) */
+.control__button,
+.form__button {
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-primary);
+}
+
+.primary:hover {
+    background-color: #2980b9;
+}
+
+.secondary {
+    background-color: var(--color-background-card);
+    color: var(--color-secondary);
+    border: 1px solid var(--color-border);
+}
+
+.secondary:hover {
+    background-color: var(--color-border);
+    color: var(--color-text-dark);
+}
+
+.control__button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Estilos del Modal */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fondo semi-transparente oscuro */
+    display: flex;
+    /* Centrar el contenido */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--color-background-card);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-close-button {
+    color: var(--color-border);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* ... otros estilos para el contenido del modal (modal__image, etc.) ... */
