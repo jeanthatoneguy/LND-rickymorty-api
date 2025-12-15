@@ -1,1 +1,1 @@
-# LND-rickymorty-api
+# LND-marvel
