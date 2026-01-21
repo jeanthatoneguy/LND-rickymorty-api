@@ -1,0 +1,29 @@
+/* NAVBAR overlay + height */
+.navbar-marvel {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 100;
+  background-color: #000;
+}
+
+
+
+.navbar-marvel .nav-link {
+  color: white;
+}
+
+.navbar-marvel .nav-link:hover {
+  color: #e62429;
+}
+
+/* Mobile dropdown background */
+@media (max-width: 991px) {
+  .navbar-collapse {
+  
+
+    background-color: #111;
+  }
+
+}
