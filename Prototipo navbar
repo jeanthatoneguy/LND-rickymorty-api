@@ -1,54 +1,81 @@
-body {
-    margin: 0;
-    padding: 0;
+.header {
+    background-color: #f0141e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+    border: none;
+    font-family: 'Arial';
 }
 
-.navbar-marvel {
-    background-color: #ed1d24 !important;
-    padding: 1rem 0;
+.header__logo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.navbar-marvel .navbar-brand {
-    color: white !important;
+.header__logo img {
+    display: none;
+}
+
+.header__subtitle {
+    font-size: 0;
+}
+
+.header__subtitle::after {
+    content: "MARVEL";
+    font-size: 28px;
+    color: white;
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    visibility: visible;
+}
+
+.header__controls {
+    display: flex;
+    gap: 8px;
+    height: 100%;
+    align-items: center;
+}
+
+.header__search, 
+#favorites-button {
+    background-color: #ffffff !important;
+    border: 3px solid #000000 !important;
+    border-radius: 0;
+    padding: 5px 15px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+}
+
+#search-input {
+    background: transparent;
+    border: none;
+    color: #000;
     font-weight: bold;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 120px;
+    font-size: 14px;
+    outline: none;
 }
 
-.navbar-marvel .nav-link {
-    color: white !important;
-    font-weight: 500;
-    margin: 0 0.5rem;
-    transition: all 0.3s;
+#favorites-button {
+    color: #000;
+    font-weight: bold;
+    font-size: 0;
+    width: auto;
+    min-width: 100px;
+    cursor: pointer;
 }
 
-.navbar-marvel .nav-link:hover {
-    color: #f0f0f0 !important;
-    transform: translateY(-2px);
-}
-
-.navbar-marvel .dropdown-menu {
-    background-color: white;
-    border: 2px solid #ed1d24;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.navbar-marvel .dropdown-item {
-    color: black !important;
-    padding: 0.75rem 1.5rem;
-    transition: all 0.3s;
-}
-
-.navbar-marvel .dropdown-item:hover {
-    background-color: #f8f9fa;
-    color: #ed1d24 !important;
-    padding-left: 2rem;
-}
-
-.navbar-toggler {
-    border-color: white !important;
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+#favorites-button::before {
+    content: "FAVORITOS";
+    font-size: 14px;
 }
