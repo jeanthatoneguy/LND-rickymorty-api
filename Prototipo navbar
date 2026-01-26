@@ -1,81 +1,11 @@
-.header {
-    background-color: #f0141e;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    height: 70px;
-    border: none;
-    font-family: 'Arial';
-}
-
-.header__logo {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header__logo img {
-    display: none;
-}
-
-.header__subtitle {
-    font-size: 0;
-}
-
-.header__subtitle::after {
-    content: "MARVEL";
-    font-size: 28px;
-    color: white;
-    font-family: 'Arial Black', sans-serif;
-    font-weight: 900;
-    text-transform: uppercase;
-    visibility: visible;
-}
-
-.header__controls {
-    display: flex;
-    gap: 8px;
-    height: 100%;
-    align-items: center;
-}
-
-.header__search, 
-#favorites-button {
-    background-color: #ffffff !important;
-    border: 3px solid #000000 !important;
-    border-radius: 0;
-    padding: 5px 15px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: none;
-}
-
-#search-input {
-    background: transparent;
-    border: none;
-    color: #000;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-    width: 120px;
-    font-size: 14px;
-    outline: none;
-}
-
-#favorites-button {
-    color: #000;
-    font-weight: bold;
-    font-size: 0;
-    width: auto;
-    min-width: 100px;
-    cursor: pointer;
-}
-
-#favorites-button::before {
-    content: "FAVORITOS";
-    font-size: 14px;
-}
+.bg-marvel-red {
+            background-color: #ED1D24 !important;
+        }
+        .navbar-marvel .nav-link,
+        .navbar-marvel .navbar-brand {
+            color: #000 !important;
+            font-weight: 600;
+        }
+        .navbar-marvel .nav-link:hover {
+            color: #fff !important;
+        }
